@@ -6,10 +6,10 @@ const PORT = 3000;
 (async () => {
   try {
     const connectionInstance = await mongoose.connect(
-      "mongodb://database2:27017"
+      `mongodb://${process.env.MONGO_URI || "localhost"}:27017`
     );
     if (connectionInstance) {
-      console.log("Mongo connecte succefully");
+      console.log("Mongo connected  succefully");
       console.log(connectionInstance.connection.host);
     }
   } catch (error) {
