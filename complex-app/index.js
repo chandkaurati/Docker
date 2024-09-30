@@ -30,7 +30,6 @@ app.get("/",  (req, res) => {
 app.get("/create",  (req, res) => {
   
   const user1 =  User("chand")
-   user1.save()
   res.status(200).json({ messsage: "OK" });
   
 });

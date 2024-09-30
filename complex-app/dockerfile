@@ -1,13 +1,19 @@
-FROM node
+FROM node AS base
 
 WORKDIR /usr/src/app
 
-COPY package* ./
+COPY package*.json ./
 
 RUN npm install
 
+FROM base AS developement
 COPY . .
+CMD ["npm", "run", "dev"]
+
+FROM base AS production 
+COPY . .
+RUN npm prun --production
+CMD ["npm", "run", "start"]
 
 EXPOSE 3000
 
-CMD ["node", "index.js"]
