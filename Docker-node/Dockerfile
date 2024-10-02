@@ -1,15 +1,11 @@
-FROM ubuntu
+FROM mhart/alpine-node
 
-RUN apt-get update
-RUN apt-get install -y curl
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get update -y
-RUN apt-get install -y nodejs
+WORKDIR /usr/src/app
 
-COPY package.json package.json
-COPY package-lock.json package-lock.json
-COPY main.js main.js
+COPY package* ./
 
 RUN npm install
 
-ENTRYPOINT ["node", "main.js"]
+COPY . . 
+
+CMD ["node", "main.js"]
